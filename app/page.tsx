@@ -22,6 +22,9 @@ import {
   Search,
   Copy,
   Check,
+  Code2,
+  Bot,
+  Globe,
 } from 'lucide-react';
 import {
   INITIAL_PROTOCOLS,
@@ -56,6 +59,8 @@ export default function HomePage() {
   const [customTimer, setCustomTimer] = useState<number>(0);
   const [copiedContract, setCopiedContract] = useState<boolean>(false);
   const [copiedPayout, setCopiedPayout] = useState<boolean>(false);
+  const [activeSdkTab, setActiveSdkTab] = useState<'dex_solidity' | 'dex_bot' | 'dex_frontend' | 'genlayer_python'>('dex_solidity');
+  const [copiedSdk, setCopiedSdk] = useState<boolean>(false);
 
   const handleGenerateBurner = () => {
     const chars = '0123456789abcdef';
@@ -1572,47 +1577,422 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION: 3-Line Developer Integration Guide */}
+      {/* SECTION: Developer & DEX Integration Guides */}
       <section id="integration" style={{ marginBottom: '40px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-          <Layers size={22} color="var(--accent-cyan)" />
-          <h2 className="font-display" style={{ fontSize: '26px', fontWeight: 800 }}>
-            Integrate in 3 Lines of Code
-          </h2>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '16px' }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Layers size={22} color="var(--accent-cyan)" />
+              <h2 className="font-display" style={{ fontSize: '26px', fontWeight: 800 }}>
+                How DEXes & Protocols Integrate WhitehatAI
+              </h2>
+            </div>
+            <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginTop: '4px' }}>
+              From on-chain pool pauses to automated off-chain anomaly watchers and frontend UI protection, integrate WhitehatAI in minutes.
+            </p>
+          </div>
         </div>
-        <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '20px' }}>
-          Any DeFi protocol, lending market, or autonomous agent on Base, Arbitrum, or GenLayer can integrate WhitehatAI.
-        </p>
 
         <div className="glass-panel" style={{ padding: '24px' }}>
-          <div style={{ marginBottom: '16px' }}>
-            <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--accent-cyan)', marginBottom: '8px' }}>
-              Solidity (Base / Arbitrum / Ethereum Vault)
-            </div>
-            <pre className="code-box">
-{`// 1. Declare WhitehatAI Interface
+          {/* Sub-navigation tabs */}
+          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '16px', marginBottom: '20px' }}>
+            <button
+              onClick={() => setActiveSdkTab('dex_solidity')}
+              className={`nav-pill-item ${activeSdkTab === 'dex_solidity' ? 'active' : ''}`}
+              style={{ padding: '8px 16px', fontSize: '13px', borderRadius: '8px' }}
+            >
+              <Shield size={14} />
+              <span>1. DEX Smart Contract (Solidity)</span>
+            </button>
+            <button
+              onClick={() => setActiveSdkTab('dex_bot')}
+              className={`nav-pill-item ${activeSdkTab === 'dex_bot' ? 'active' : ''}`}
+              style={{ padding: '8px 16px', fontSize: '13px', borderRadius: '8px' }}
+            >
+              <Bot size={14} />
+              <span>2. Anomaly Watcher Bot (JS/TS SDK)</span>
+            </button>
+            <button
+              onClick={() => setActiveSdkTab('dex_frontend')}
+              className={`nav-pill-item ${activeSdkTab === 'dex_frontend' ? 'active' : ''}`}
+              style={{ padding: '8px 16px', fontSize: '13px', borderRadius: '8px' }}
+            >
+              <Globe size={14} />
+              <span>3. DEX Frontend Guard (React)</span>
+            </button>
+            <button
+              onClick={() => setActiveSdkTab('genlayer_python')}
+              className={`nav-pill-item ${activeSdkTab === 'genlayer_python' ? 'active' : ''}`}
+              style={{ padding: '8px 16px', fontSize: '13px', borderRadius: '8px' }}
+            >
+              <Code2 size={14} />
+              <span>4. GenLayer Intelligent Contract</span>
+            </button>
+          </div>
+
+          {/* TAB 1: DEX Smart Contract (Solidity) */}
+          {activeSdkTab === 'dex_solidity' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <div>
+                  <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    Protecting Swaps & Liquidity Withdrawals in Solidity
+                  </div>
+                  <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                    DEX pools on Base, Arbitrum, or Ethereum add a 3-line modifier to instantly freeze swaps and liquidity drains during an active exploit.
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    const code = `// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+// 1. Declare WhitehatAI Circuit Breaker Interface
 interface IWhitehatAI {
     function is_halted(address target) external view returns (bool);
 }
 
-// 2. Add Modifier to Critical Functions (Withdrawals, Swaps, Liquidations)
-modifier onlyWhenSecure() {
-    require(!whitehatAI.is_halted(address(this)), "CIRCUIT_BREAKER_ACTIVE");
-    _;
-}`}
-            </pre>
-          </div>
+contract DEXLiquidityPool {
+    IWhitehatAI public constant WHITEHAT = IWhitehatAI(0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F);
 
-          <div>
-            <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--accent-cyan)', marginBottom: '8px' }}>
-              GenLayer Python Intelligent Contract
+    // 2. Add Modifier to Critical Pool Operations
+    modifier onlyWhenSecure() {
+        require(!WHITEHAT.is_halted(address(this)), "CIRCUIT_BREAKER_ACTIVE: Exploit detected, trading paused!");
+        _;
+    }
+
+    // 3. Protect swaps and liquidity removal
+    function swap(uint256 amountIn, address tokenOut) external onlyWhenSecure returns (uint256) {
+        // Swap execution proceeds normally when pool is SECURE
+    }
+
+    function removeLiquidity(uint256 lpTokenAmount) external onlyWhenSecure {
+        // Liquidity withdrawals frozen instantly if an exploit is validated
+    }
+}`;
+                    navigator.clipboard.writeText(code);
+                    setCopiedSdk(true);
+                    setTimeout(() => setCopiedSdk(false), 2000);
+                  }}
+                  className="btn btn-secondary"
+                  style={{ padding: '6px 12px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
+                >
+                  {copiedSdk ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
+                  <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
+                </button>
+              </div>
+
+              <pre className="code-box" style={{ fontSize: '12px', lineHeight: 1.5 }}>
+{`// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+// 1. Declare WhitehatAI Circuit Breaker Interface
+interface IWhitehatAI {
+    function is_halted(address target) external view returns (bool);
+}
+
+contract DEXLiquidityPool {
+    IWhitehatAI public constant WHITEHAT = IWhitehatAI(0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F);
+
+    // 2. Add Modifier to Critical Pool Operations
+    modifier onlyWhenSecure() {
+        require(!WHITEHAT.is_halted(address(this)), "CIRCUIT_BREAKER_ACTIVE: Exploit detected, trading paused!");
+        _;
+    }
+
+    // 3. Protect swaps and liquidity removal
+    function swap(uint256 amountIn, address tokenOut) external onlyWhenSecure returns (uint256) {
+        // Swap execution proceeds normally when pool is SECURE
+    }
+
+    function removeLiquidity(uint256 lpTokenAmount) external onlyWhenSecure {
+        // Liquidity withdrawals frozen instantly if an exploit is validated
+    }
+}`}
+              </pre>
+
+              <div style={{ marginTop: '14px', padding: '12px 16px', background: 'rgba(30, 41, 59, 0.04)', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '12px', color: 'var(--text-secondary)' }}>
+                🛡️ <strong>Execution Flow:</strong> If an attacker attempts a multi-transaction flash-loan drain, the moment WhitehatAI consensus activates `is_halted = true`, subsequent swaps and withdrawals in that pool revert immediately on-chain.
+              </div>
             </div>
-            <pre className="code-box">
-{`whitehat = gl.get_contract(self.whitehat_address)
-if whitehat.is_halted(str(self.address)):
-    raise gl.UserError("EMERGENCY_HALT: Circuit breaker active!")`}
-            </pre>
-          </div>
+          )}
+
+          {/* TAB 2: Anomaly Watcher Bot (JS/TS SDK) */}
+          {activeSdkTab === 'dex_bot' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <div>
+                  <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    Automated DEX Watcher Bot & Keeper Integration
+                  </div>
+                  <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                    DEX watcher bots monitor mempools or price oracles. If an anomalous reserve drain occurs, the keeper calls WhitehatAI to trigger consensus.
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    const code = `import { createClient, createAccount } from "genlayer-js";
+import { studionet } from "genlayer-js/chains";
+
+const KEEPER_PRIVATE_KEY = process.env.KEEPER_PRIVATE_KEY;
+const WHITEHAT_CONTRACT = "0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F";
+
+const client = createClient({
+  chain: studionet,
+  account: createAccount(KEEPER_PRIVATE_KEY)
+});
+
+// Autonomous Anomaly Watcher triggered on high-slippage reserve drain
+export async function reportDEXAnomaly(poolAddress, suspiciousTxHash, summary) {
+  console.log(\`[WATCHER] Exploit anomaly detected in pool \${poolAddress}. Submitting to WhitehatAI...\`);
+
+  const txHash = await client.writeContract({
+    address: WHITEHAT_CONTRACT,
+    functionName: "submit_exploit_report",
+    args: [
+      "base",
+      poolAddress,
+      \`https://basescan.org/tx/\${suspiciousTxHash}\`,
+      summary
+    ]
+  });
+
+  console.log(\`[CONSENSUS] Report registered on GenLayer StudioNet: \${txHash}\`);
+  console.log("GenLayer AI validators are now independently verifying block explorer traces...");
+}`;
+                    navigator.clipboard.writeText(code);
+                    setCopiedSdk(true);
+                    setTimeout(() => setCopiedSdk(false), 2000);
+                  }}
+                  className="btn btn-secondary"
+                  style={{ padding: '6px 12px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
+                >
+                  {copiedSdk ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
+                  <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
+                </button>
+              </div>
+
+              <pre className="code-box" style={{ fontSize: '12px', lineHeight: 1.5 }}>
+{`import { createClient, createAccount } from "genlayer-js";
+import { studionet } from "genlayer-js/chains";
+
+const KEEPER_PRIVATE_KEY = process.env.KEEPER_PRIVATE_KEY;
+const WHITEHAT_CONTRACT = "0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F";
+
+const client = createClient({
+  chain: studionet,
+  account: createAccount(KEEPER_PRIVATE_KEY)
+});
+
+// Autonomous Anomaly Watcher triggered on high-slippage reserve drain
+export async function reportDEXAnomaly(poolAddress, suspiciousTxHash, summary) {
+  console.log(\`[WATCHER] Exploit anomaly detected in pool \${poolAddress}. Submitting to WhitehatAI...\`);
+
+  const txHash = await client.writeContract({
+    address: WHITEHAT_CONTRACT,
+    functionName: "submit_exploit_report",
+    args: [
+      "base",
+      poolAddress,
+      \`https://basescan.org/tx/\${suspiciousTxHash}\`,
+      summary
+    ]
+  });
+
+  console.log(\`[CONSENSUS] Report registered on GenLayer StudioNet: \${txHash}\`);
+  console.log("GenLayer AI validators are now independently verifying block explorer traces...");
+}`}
+              </pre>
+
+              <div style={{ marginTop: '14px', padding: '12px 16px', background: 'rgba(30, 41, 59, 0.04)', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '12px', color: 'var(--text-secondary)' }}>
+                ⚡ <strong>Validator Quorum:</strong> Once submitted, GenLayer AI validators query Basescan or Arbiscan in real-time. If the exploit math is verified, the circuit breaker trips automatically with zero human multisig lag.
+              </div>
+            </div>
+          )}
+
+          {/* TAB 3: DEX Frontend Guard (React) */}
+          {activeSdkTab === 'dex_frontend' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <div>
+                  <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    Protecting DEX Users in Frontend UI (React / Web3)
+                  </div>
+                  <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                    DEX web apps check WhitehatAI state to disable swaps and display a security alert before users submit transactions.
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    const code = `import React, { useEffect, useState } from 'react';
+import { createClient } from 'genlayer-js';
+import { studionet } from 'genlayer-js/chains';
+
+const WHITEHAT_CONTRACT = "0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F";
+
+export function DEXSwapButton({ poolAddress, onExecuteSwap }) {
+  const [isHalted, setIsHalted] = useState(false);
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    const client = createClient({ chain: studionet });
+    async function verifyPoolSafety() {
+      try {
+        const halted = await client.readContract({
+          address: WHITEHAT_CONTRACT,
+          functionName: "is_halted",
+          args: [poolAddress]
+        });
+        setIsHalted(Boolean(halted));
+      } finally {
+        setChecking(false);
+      }
+    }
+    verifyPoolSafety();
+  }, [poolAddress]);
+
+  if (isHalted) {
+    return (
+      <div style={{ background: '#fee2e2', color: '#991b1b', padding: '12px', borderRadius: '8px', fontWeight: 600 }}>
+        🛑 Emergency Pause Active: WhitehatAI circuit breaker triggered to protect liquidity. Swaps temporarily frozen.
+      </div>
+    );
+  }
+
+  return (
+    <button disabled={checking} onClick={onExecuteSwap} className="btn-swap">
+      {checking ? "Checking Security State..." : "Execute Swap"}
+    </button>
+  );
+}`;
+                    navigator.clipboard.writeText(code);
+                    setCopiedSdk(true);
+                    setTimeout(() => setCopiedSdk(false), 2000);
+                  }}
+                  className="btn btn-secondary"
+                  style={{ padding: '6px 12px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
+                >
+                  {copiedSdk ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
+                  <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
+                </button>
+              </div>
+
+              <pre className="code-box" style={{ fontSize: '12px', lineHeight: 1.5 }}>
+{`import React, { useEffect, useState } from 'react';
+import { createClient } from 'genlayer-js';
+import { studionet } from 'genlayer-js/chains';
+
+const WHITEHAT_CONTRACT = "0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F";
+
+export function DEXSwapButton({ poolAddress, onExecuteSwap }) {
+  const [isHalted, setIsHalted] = useState(false);
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    const client = createClient({ chain: studionet });
+    async function verifyPoolSafety() {
+      try {
+        const halted = await client.readContract({
+          address: WHITEHAT_CONTRACT,
+          functionName: "is_halted",
+          args: [poolAddress]
+        });
+        setIsHalted(Boolean(halted));
+      } finally {
+        setChecking(false);
+      }
+    }
+    verifyPoolSafety();
+  }, [poolAddress]);
+
+  if (isHalted) {
+    return (
+      <div style={{ background: '#fee2e2', color: '#991b1b', padding: '12px', borderRadius: '8px', fontWeight: 600 }}>
+        🛑 Emergency Pause Active: WhitehatAI circuit breaker triggered to protect liquidity. Swaps temporarily frozen.
+      </div>
+    );
+  }
+
+  return (
+    <button disabled={checking} onClick={onExecuteSwap} className="btn-swap">
+      {checking ? "Checking Security State..." : "Execute Swap"}
+    </button>
+  );
+}`}
+              </pre>
+
+              <div style={{ marginTop: '14px', padding: '12px 16px', background: 'rgba(30, 41, 59, 0.04)', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '12px', color: 'var(--text-secondary)' }}>
+                💡 <strong>User Safety:</strong> Normal users never lose gas on failed transactions during an exploit; the frontend prevents execution before signing.
+              </div>
+            </div>
+          )}
+
+          {/* TAB 4: GenLayer Intelligent Contract (Python) */}
+          {activeSdkTab === 'genlayer_python' && (
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                <div>
+                  <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    Cross-Contract Guard for GenLayer Intelligent Contracts
+                  </div>
+                  <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                    Any Python intelligent contract on GenLayer queries WhitehatAI synchronously in smart contract state.
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    const code = `# Inside your GenLayer Python Intelligent Contract
+from genlayer import *
+
+@gl.contract
+class AutonomousAgentVault:
+    whitehat_address: Address
+
+    @gl.public.write
+    def execute_arbitrage(self, target_pool: str, amount: u256):
+        # 1. Query WhitehatAI Circuit Breaker Synchronously
+        whitehat = gl.get_contract(self.whitehat_address)
+        if whitehat.is_halted(target_pool):
+            raise gl.UserError("CIRCUIT_BREAKER_ACTIVE: Target pool is under emergency exploit halt!")
+
+        # 2. Proceed with trade execution safely
+        return "TRADE_EXECUTED"`;
+                    navigator.clipboard.writeText(code);
+                    setCopiedSdk(true);
+                    setTimeout(() => setCopiedSdk(false), 2000);
+                  }}
+                  className="btn btn-secondary"
+                  style={{ padding: '6px 12px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
+                >
+                  {copiedSdk ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
+                  <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
+                </button>
+              </div>
+
+              <pre className="code-box" style={{ fontSize: '12px', lineHeight: 1.5 }}>
+{`# Inside your GenLayer Python Intelligent Contract
+from genlayer import *
+
+@gl.contract
+class AutonomousAgentVault:
+    whitehat_address: Address
+
+    @gl.public.write
+    def execute_arbitrage(self, target_pool: str, amount: u256):
+        # 1. Query WhitehatAI Circuit Breaker Synchronously
+        whitehat = gl.get_contract(self.whitehat_address)
+        if whitehat.is_halted(target_pool):
+            raise gl.UserError("CIRCUIT_BREAKER_ACTIVE: Target pool is under emergency exploit halt!")
+
+        # 2. Proceed with trade execution safely
+        return "TRADE_EXECUTED"`}
+              </pre>
+
+              <div style={{ marginTop: '14px', padding: '12px 16px', background: 'rgba(30, 41, 59, 0.04)', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '12px', color: 'var(--text-secondary)' }}>
+                ⚡ <strong>Synchronous GenVM Execution:</strong> Cross-contract reads in GenVM are instant and deterministic without requiring asynchronous message bridges.
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </div>
