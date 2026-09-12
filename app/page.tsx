@@ -1468,53 +1468,98 @@ export default function HomePage() {
       </section>
 
       {/* SECTION: Historical Adjudications Feed */}
-      <section id="radar" style={{ marginBottom: '64px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+      <section id="radar" style={{ marginBottom: '56px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '18px' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Activity size={22} color="var(--accent-cyan)" />
-              <h2 className="font-display" style={{ fontSize: '26px', fontWeight: 800 }}>
+              <Activity size={22} color="#334e68" />
+              <h2 className="font-display" style={{ fontSize: '25px', fontWeight: 800, color: '#1e293b' }}>
                 Recent Adjudication Feed & Consensus Audit
               </h2>
             </div>
-            <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginTop: '4px' }}>
+            <p style={{ fontSize: '13px', color: '#4b5563', marginTop: '3px' }}>
               Immutable record of all adjudicated security alerts and validator quorums.
             </p>
           </div>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           {reports.map((rep) => (
-            <div key={rep.report_id} className="glass-panel" style={{ padding: '20px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', marginBottom: '12px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div
+              key={rep.report_id}
+              style={{
+                background: 'rgba(255, 255, 255, 0.88)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(203, 213, 225, 0.7)',
+                borderRadius: '12px',
+                padding: '16px 20px',
+                boxShadow: '0 2px 8px -1px rgba(15, 23, 42, 0.04), 0 1px 3px 0 rgba(15, 23, 42, 0.02)',
+                transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
+              }}
+            >
+              {/* Header row: Chain, ID, Status, Timestamp, Bounty */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                   <span className={`chain-pill chain-${rep.chain_id}`}>
                     {rep.chain_id.toUpperCase()}
                   </span>
-                  <span className="font-mono" style={{ fontWeight: 700, fontSize: '14px', color: '#0f172a' }}>
+                  <span className="font-mono" style={{ fontWeight: 700, fontSize: '13px', color: '#1e293b' }}>
                     {rep.report_id}
                   </span>
+
                   {rep.is_halt ? (
-                    <span className="badge-status badge-halted">
-                      <AlertTriangle size={12} /> EMERGENCY HALT
+                    <span
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '5px',
+                        padding: '3px 9px',
+                        borderRadius: '6px',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        letterSpacing: '0.02em',
+                        background: 'rgba(136, 19, 55, 0.08)',
+                        color: '#831843',
+                        border: '1px solid rgba(159, 18, 57, 0.25)',
+                      }}
+                    >
+                      <AlertTriangle size={12} color="#831843" /> EMERGENCY HALT
                     </span>
                   ) : (
-                    <span className="badge-status badge-secure">
-                      <CheckCircle2 size={12} /> FALSE ALARM
+                    <span
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '5px',
+                        padding: '3px 9px',
+                        borderRadius: '6px',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        letterSpacing: '0.02em',
+                        background: 'rgba(17, 94, 89, 0.08)',
+                        color: '#115e59',
+                        border: '1px solid rgba(13, 148, 136, 0.25)',
+                      }}
+                    >
+                      <CheckCircle2 size={12} color="#115e59" /> FALSE ALARM
                     </span>
                   )}
-                  <span style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
+
+                  <span style={{ fontSize: '12px', color: '#64748b' }}>
                     {rep.timestamp || 'Recent'}
                   </span>
                 </div>
+
                 {rep.bounty_awarded > 0 && (
                   <div
                     style={{
                       fontFamily: 'var(--font-mono)',
                       fontSize: '12px',
-                      color: 'var(--accent-emerald)',
-                      background: 'rgba(16, 185, 129, 0.12)',
-                      padding: '4px 10px',
+                      fontWeight: 600,
+                      color: '#14532d',
+                      background: 'rgba(20, 83, 45, 0.08)',
+                      border: '1px solid rgba(22, 101, 52, 0.22)',
+                      padding: '3px 9px',
                       borderRadius: '6px',
                     }}
                   >
@@ -1523,34 +1568,51 @@ export default function HomePage() {
                 )}
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '10px', marginBottom: '12px', fontSize: '13px' }}>
+              {/* Protocol Details & Vector Row */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '8px', marginBottom: '10px', fontSize: '13px' }}>
                 <div>
-                  <span style={{ color: 'var(--text-muted)' }}>Target Protocol: </span>
-                  <strong style={{ color: '#0f172a' }}>{rep.protocol_name}</strong> ({rep.target_address.slice(0, 10)}...)
+                  <span style={{ color: '#64748b' }}>Target Protocol: </span>
+                  <a
+                    href={rep.evidence_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: '#243b53',
+                      fontWeight: 600,
+                      textDecoration: 'none',
+                      transition: 'color 0.15s ease',
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.textDecoration = 'underline')}
+                    onMouseLeave={(e) => (e.currentTarget.style.textDecoration = 'none')}
+                  >
+                    {rep.protocol_name}
+                  </a>
+                  <span style={{ color: '#4b5563' }}> ({rep.target_address.slice(0, 10)}...)</span>
                 </div>
                 <div>
-                  <span style={{ color: 'var(--text-muted)' }}>Vector: </span>
-                  <span style={{ color: 'var(--accent-cyan)' }}>{rep.attack_type}</span>
+                  <span style={{ color: '#64748b' }}>Vector: </span>
+                  <span style={{ color: '#334155', fontWeight: 500 }}>{rep.attack_type}</span>
                 </div>
               </div>
 
-              <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginBottom: '12px', lineHeight: 1.5 }}>
+              {/* Core Text Rationale (Charcoal Grey, optimized line height) */}
+              <div style={{ fontSize: '13px', color: '#374151', marginBottom: '10px', lineHeight: 1.55 }}>
                 {rep.rationale}
               </div>
 
-              {/* Validator Breakdown */}
+              {/* Validator Breakdown (Deep professional forest green) */}
               {rep.validatorVotes && rep.validatorVotes.length > 0 && (
                 <div
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '10px',
-                    paddingTop: '10px',
-                    borderTop: '1px solid rgba(15, 23, 42, 0.08)',
+                    gap: '8px',
+                    paddingTop: '9px',
+                    borderTop: '1px solid rgba(203, 213, 225, 0.6)',
                     flexWrap: 'wrap',
                   }}
                 >
-                  <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
+                  <span style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', fontWeight: 600, color: '#475569' }}>
                     VALIDATOR QUORUM:
                   </span>
                   {rep.validatorVotes.map((v, idx) => (
@@ -1559,11 +1621,11 @@ export default function HomePage() {
                       style={{
                         fontSize: '11px',
                         fontFamily: 'var(--font-mono)',
-                        background: 'rgba(255, 255, 255, 0.9)',
-                        border: '1px solid rgba(15, 23, 42, 0.1)',
-                        padding: '3px 8px',
+                        background: v.vote === 'agree' ? 'rgba(20, 83, 45, 0.06)' : 'rgba(136, 19, 55, 0.06)',
+                        border: v.vote === 'agree' ? '1px solid rgba(20, 83, 45, 0.2)' : '1px solid rgba(159, 18, 57, 0.2)',
+                        padding: '2px 7px',
                         borderRadius: '4px',
-                        color: v.vote === 'agree' ? '#047857' : '#b91c1c',
+                        color: v.vote === 'agree' ? '#14532d' : '#831843',
                         fontWeight: 600,
                       }}
                     >
