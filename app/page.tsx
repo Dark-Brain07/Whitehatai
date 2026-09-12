@@ -1594,38 +1594,90 @@ export default function HomePage() {
         </div>
 
         <div className="glass-panel" style={{ padding: '24px' }}>
-          {/* Sub-navigation tabs */}
+          {/* Sub-navigation tabs with refined corporate blue active state */}
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '16px', marginBottom: '20px' }}>
             <button
               onClick={() => setActiveSdkTab('dex_solidity')}
-              className={`nav-pill-item ${activeSdkTab === 'dex_solidity' ? 'active' : ''}`}
-              style={{ padding: '8px 16px', fontSize: '13px', borderRadius: '8px' }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px 16px',
+                fontSize: '13px',
+                fontWeight: activeSdkTab === 'dex_solidity' ? 600 : 500,
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.18s ease-in-out',
+                border: activeSdkTab === 'dex_solidity' ? '1px solid #1d4ed8' : '1px solid #e2e8f0',
+                background: activeSdkTab === 'dex_solidity' ? '#2563eb' : '#ffffff',
+                color: activeSdkTab === 'dex_solidity' ? '#ffffff' : '#475569',
+                boxShadow: activeSdkTab === 'dex_solidity' ? '0 2px 8px rgba(37, 99, 235, 0.22)' : 'none',
+              }}
             >
-              <Shield size={14} />
+              <Shield size={14} color={activeSdkTab === 'dex_solidity' ? '#ffffff' : '#64748b'} />
               <span>1. DEX Smart Contract (Solidity)</span>
             </button>
             <button
               onClick={() => setActiveSdkTab('dex_bot')}
-              className={`nav-pill-item ${activeSdkTab === 'dex_bot' ? 'active' : ''}`}
-              style={{ padding: '8px 16px', fontSize: '13px', borderRadius: '8px' }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px 16px',
+                fontSize: '13px',
+                fontWeight: activeSdkTab === 'dex_bot' ? 600 : 500,
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.18s ease-in-out',
+                border: activeSdkTab === 'dex_bot' ? '1px solid #1d4ed8' : '1px solid #e2e8f0',
+                background: activeSdkTab === 'dex_bot' ? '#2563eb' : '#ffffff',
+                color: activeSdkTab === 'dex_bot' ? '#ffffff' : '#475569',
+                boxShadow: activeSdkTab === 'dex_bot' ? '0 2px 8px rgba(37, 99, 235, 0.22)' : 'none',
+              }}
             >
-              <Bot size={14} />
+              <Bot size={14} color={activeSdkTab === 'dex_bot' ? '#ffffff' : '#64748b'} />
               <span>2. Anomaly Watcher Bot (JS/TS SDK)</span>
             </button>
             <button
               onClick={() => setActiveSdkTab('dex_frontend')}
-              className={`nav-pill-item ${activeSdkTab === 'dex_frontend' ? 'active' : ''}`}
-              style={{ padding: '8px 16px', fontSize: '13px', borderRadius: '8px' }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px 16px',
+                fontSize: '13px',
+                fontWeight: activeSdkTab === 'dex_frontend' ? 600 : 500,
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.18s ease-in-out',
+                border: activeSdkTab === 'dex_frontend' ? '1px solid #1d4ed8' : '1px solid #e2e8f0',
+                background: activeSdkTab === 'dex_frontend' ? '#2563eb' : '#ffffff',
+                color: activeSdkTab === 'dex_frontend' ? '#ffffff' : '#475569',
+                boxShadow: activeSdkTab === 'dex_frontend' ? '0 2px 8px rgba(37, 99, 235, 0.22)' : 'none',
+              }}
             >
-              <Globe size={14} />
+              <Globe size={14} color={activeSdkTab === 'dex_frontend' ? '#ffffff' : '#64748b'} />
               <span>3. DEX Frontend Guard (React)</span>
             </button>
             <button
               onClick={() => setActiveSdkTab('genlayer_python')}
-              className={`nav-pill-item ${activeSdkTab === 'genlayer_python' ? 'active' : ''}`}
-              style={{ padding: '8px 16px', fontSize: '13px', borderRadius: '8px' }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '8px 16px',
+                fontSize: '13px',
+                fontWeight: activeSdkTab === 'genlayer_python' ? 600 : 500,
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.18s ease-in-out',
+                border: activeSdkTab === 'genlayer_python' ? '1px solid #1d4ed8' : '1px solid #e2e8f0',
+                background: activeSdkTab === 'genlayer_python' ? '#2563eb' : '#ffffff',
+                color: activeSdkTab === 'genlayer_python' ? '#ffffff' : '#475569',
+                boxShadow: activeSdkTab === 'genlayer_python' ? '0 2px 8px rgba(37, 99, 235, 0.22)' : 'none',
+              }}
             >
-              <Code2 size={14} />
+              <Code2 size={14} color={activeSdkTab === 'genlayer_python' ? '#ffffff' : '#64748b'} />
               <span>4. GenLayer Intelligent Contract</span>
             </button>
           </div>
@@ -1633,18 +1685,64 @@ export default function HomePage() {
           {/* TAB 1: DEX Smart Contract (Solidity) */}
           {activeSdkTab === 'dex_solidity' && (
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                <div>
-                  <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)' }}>
-                    Protecting Swaps & Liquidity Withdrawals in Solidity
-                  </div>
-                  <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                    DEX pools on Base, Arbitrum, or Ethereum add a 3-line modifier to instantly freeze swaps and liquidity drains during an active exploit.
-                  </div>
+              <div style={{ marginBottom: '14px' }}>
+                <div style={{ fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>
+                  Protecting Swaps & Liquidity Withdrawals in Solidity
                 </div>
-                <button
-                  onClick={() => {
-                    const code = `// SPDX-License-Identifier: MIT
+                <div style={{ fontSize: '13px', color: '#64748b', marginTop: '2px' }}>
+                  DEX pools on Base, Arbitrum, or Ethereum add a 3-line modifier to instantly freeze swaps and liquidity drains during an active exploit.
+                </div>
+              </div>
+
+              {/* Code Editor Container */}
+              <div
+                style={{
+                  background: '#0f172a',
+                  borderRadius: '10px',
+                  border: '1px solid rgba(148, 163, 184, 0.2)',
+                  boxShadow: '0 10px 24px -4px rgba(15, 23, 42, 0.24), 0 2px 6px -1px rgba(15, 23, 42, 0.1)',
+                  overflow: 'hidden',
+                }}
+              >
+                {/* Editor Header Bar */}
+                <div
+                  style={{
+                    background: '#1e293b',
+                    padding: '9px 16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <div style={{ display: 'flex', gap: '6px' }}>
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ef4444', opacity: 0.85 }} />
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#f59e0b', opacity: 0.85 }} />
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#10b981', opacity: 0.85 }} />
+                    </div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        background: 'rgba(15, 23, 42, 0.55)',
+                        padding: '3px 9px',
+                        borderRadius: '5px',
+                        fontSize: '12px',
+                        fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+                        color: '#cbd5e1',
+                        border: '1px solid rgba(255, 255, 255, 0.06)',
+                      }}
+                    >
+                      <Code2 size={12} color="#93c5fd" />
+                      <span>DEXLiquidityPool.sol</span>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      const code = `// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
 // 1. Declare WhitehatAI Circuit Breaker Interface
@@ -1670,49 +1768,80 @@ contract DEXLiquidityPool {
         // Liquidity withdrawals frozen instantly if an exploit is validated
     }
 }`;
-                    navigator.clipboard.writeText(code);
-                    setCopiedSdk(true);
-                    setTimeout(() => setCopiedSdk(false), 2000);
-                  }}
-                  className="btn btn-secondary"
-                  style={{ padding: '6px 12px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
-                >
-                  {copiedSdk ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
-                  <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
-                </button>
+                      navigator.clipboard.writeText(code);
+                      setCopiedSdk(true);
+                      setTimeout(() => setCopiedSdk(false), 2000);
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      background: 'rgba(255, 255, 255, 0.08)',
+                      color: copiedSdk ? '#86efac' : '#e2e8f0',
+                      border: '1px solid rgba(255, 255, 255, 0.14)',
+                      padding: '5px 11px',
+                      borderRadius: '6px',
+                      fontSize: '12px',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease-in-out',
+                    }}
+                  >
+                    {copiedSdk ? <Check size={13} color="#86efac" /> : <Copy size={13} />}
+                    <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
+                  </button>
+                </div>
+
+                {/* Softened Syntax Code Area */}
+                <pre style={{ margin: 0, padding: '18px 20px', overflowX: 'auto', color: '#f1f5f9', fontSize: '13px', lineHeight: 1.65, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace' }}>
+                  <code>
+                    <span style={{ color: '#94a3b8' }}>// SPDX-License-Identifier: MIT</span>{'\n'}
+                    <span style={{ color: '#60a5fa' }}>pragma solidity</span> <span style={{ color: '#86efac' }}>^0.8.20</span>;{'\n\n'}
+                    <span style={{ color: '#94a3b8' }}>// 1. Declare WhitehatAI Circuit Breaker Interface</span>{'\n'}
+                    <span style={{ color: '#60a5fa' }}>interface</span> <span style={{ color: '#c084fc' }}>IWhitehatAI</span> {'{'}{'\n'}
+                    {'    '}<span style={{ color: '#60a5fa' }}>function</span> <span style={{ color: '#fde047' }}>is_halted</span>(<span style={{ color: '#c084fc' }}>address</span> target) <span style={{ color: '#60a5fa' }}>external view returns</span> (<span style={{ color: '#c084fc' }}>bool</span>);{'\n'}
+                    {'}'}{'\n\n'}
+                    <span style={{ color: '#60a5fa' }}>contract</span> <span style={{ color: '#c084fc' }}>DEXLiquidityPool</span> {'{'}{'\n'}
+                    {'    '}<span style={{ color: '#c084fc' }}>IWhitehatAI</span> <span style={{ color: '#60a5fa' }}>public constant</span> WHITEHAT = <span style={{ color: '#c084fc' }}>IWhitehatAI</span>(<span style={{ color: '#86efac' }}>0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F</span>);{'\n\n'}
+                    {'    '}<span style={{ color: '#94a3b8' }}>// 2. Add Modifier to Critical Pool Operations</span>{'\n'}
+                    {'    '}<span style={{ color: '#60a5fa' }}>modifier</span> <span style={{ color: '#fde047' }}>onlyWhenSecure</span>() {'{'}{'\n'}
+                    {'        '}<span style={{ color: '#60a5fa' }}>require</span>(!WHITEHAT.<span style={{ color: '#fde047' }}>is_halted</span>(<span style={{ color: '#60a5fa' }}>address</span>(<span style={{ color: '#60a5fa' }}>this</span>)), <span style={{ color: '#86efac' }}>"CIRCUIT_BREAKER_ACTIVE: Exploit detected, trading paused!"</span>);{'\n'}
+                    {'        '}_;{'\n'}
+                    {'    }'}{'\n\n'}
+                    {'    '}<span style={{ color: '#94a3b8' }}>// 3. Protect swaps and liquidity removal</span>{'\n'}
+                    {'    '}<span style={{ color: '#60a5fa' }}>function</span> <span style={{ color: '#fde047' }}>swap</span>(<span style={{ color: '#c084fc' }}>uint256</span> amountIn, <span style={{ color: '#c084fc' }}>address</span> tokenOut) <span style={{ color: '#60a5fa' }}>external</span> <span style={{ color: '#fde047' }}>onlyWhenSecure</span> <span style={{ color: '#60a5fa' }}>returns</span> (<span style={{ color: '#c084fc' }}>uint256</span>) {'{'}{'\n'}
+                    {'        '}<span style={{ color: '#94a3b8' }}>// Swap execution proceeds normally when pool status is SECURE</span>{'\n'}
+                    {'    }'}{'\n\n'}
+                    {'    '}<span style={{ color: '#60a5fa' }}>function</span> <span style={{ color: '#fde047' }}>removeLiquidity</span>(<span style={{ color: '#c084fc' }}>uint256</span> lpTokenAmount) <span style={{ color: '#60a5fa' }}>external</span> <span style={{ color: '#fde047' }}>onlyWhenSecure</span> {'{'}{'\n'}
+                    {'        '}<span style={{ color: '#94a3b8' }}>// Liquidity withdrawals frozen instantly if an exploit is validated</span>{'\n'}
+                    {'    }'}{'\n'}
+                    {'}'}
+                  </code>
+                </pre>
               </div>
 
-              <pre className="code-box" style={{ fontSize: '12px', lineHeight: 1.5 }}>
-{`// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-// 1. Declare WhitehatAI Circuit Breaker Interface
-interface IWhitehatAI {
-    function is_halted(address target) external view returns (bool);
-}
-
-contract DEXLiquidityPool {
-    IWhitehatAI public constant WHITEHAT = IWhitehatAI(0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F);
-
-    // 2. Add Modifier to Critical Pool Operations
-    modifier onlyWhenSecure() {
-        require(!WHITEHAT.is_halted(address(this)), "CIRCUIT_BREAKER_ACTIVE: Exploit detected, trading paused!");
-        _;
-    }
-
-    // 3. Protect swaps and liquidity removal
-    function swap(uint256 amountIn, address tokenOut) external onlyWhenSecure returns (uint256) {
-        // Swap execution proceeds normally when pool is SECURE
-    }
-
-    function removeLiquidity(uint256 lpTokenAmount) external onlyWhenSecure {
-        // Liquidity withdrawals frozen instantly if an exploit is validated
-    }
-}`}
-              </pre>
-
-              <div style={{ marginTop: '14px', padding: '12px 16px', background: 'rgba(30, 41, 59, 0.04)', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '12px', color: 'var(--text-secondary)' }}>
-                🛡️ <strong>Execution Flow:</strong> If an attacker attempts a multi-transaction flash-loan drain, the moment WhitehatAI consensus activates `is_halted = true`, subsequent swaps and withdrawals in that pool revert immediately on-chain.
+              {/* Execution Flow Text Area */}
+              <div
+                style={{
+                  marginTop: '14px',
+                  padding: '13px 18px',
+                  background: 'rgba(248, 250, 252, 0.9)',
+                  borderRadius: '8px',
+                  border: '1px solid #e2e8f0',
+                  fontSize: '13px',
+                  color: '#334155',
+                  lineHeight: 1.55,
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                }}
+              >
+                <div style={{ padding: '4px', background: 'rgba(37, 99, 235, 0.08)', borderRadius: '5px', color: '#2563eb', flexShrink: 0, marginTop: '1px' }}>
+                  <Shield size={15} />
+                </div>
+                <div>
+                  <strong style={{ color: '#0f172a', fontWeight: 600 }}>Execution Flow:</strong> If an attacker attempts a multi-transaction flash-loan drain, the moment WhitehatAI consensus activates <code style={{ color: '#2563eb', fontWeight: 600, background: 'rgba(37, 99, 235, 0.08)', padding: '2px 5px', borderRadius: '4px' }}>is_halted = true</code>, subsequent swaps and withdrawals in that pool revert immediately on-chain.
+                </div>
               </div>
             </div>
           )}
@@ -1720,18 +1849,64 @@ contract DEXLiquidityPool {
           {/* TAB 2: Anomaly Watcher Bot (JS/TS SDK) */}
           {activeSdkTab === 'dex_bot' && (
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                <div>
-                  <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)' }}>
-                    Automated DEX Watcher Bot & Keeper Integration
-                  </div>
-                  <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                    DEX watcher bots monitor mempools or price oracles. If an anomalous reserve drain occurs, the keeper calls WhitehatAI to trigger consensus.
-                  </div>
+              <div style={{ marginBottom: '14px' }}>
+                <div style={{ fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>
+                  Automated DEX Watcher Bot & Keeper Integration
                 </div>
-                <button
-                  onClick={() => {
-                    const code = `import { createClient, createAccount } from "genlayer-js";
+                <div style={{ fontSize: '13px', color: '#64748b', marginTop: '2px' }}>
+                  DEX watcher bots monitor mempools or price oracles. If an anomalous reserve drain occurs, the keeper calls WhitehatAI to trigger consensus.
+                </div>
+              </div>
+
+              {/* Code Editor Container */}
+              <div
+                style={{
+                  background: '#0f172a',
+                  borderRadius: '10px',
+                  border: '1px solid rgba(148, 163, 184, 0.2)',
+                  boxShadow: '0 10px 24px -4px rgba(15, 23, 42, 0.24), 0 2px 6px -1px rgba(15, 23, 42, 0.1)',
+                  overflow: 'hidden',
+                }}
+              >
+                {/* Editor Header Bar */}
+                <div
+                  style={{
+                    background: '#1e293b',
+                    padding: '9px 16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <div style={{ display: 'flex', gap: '6px' }}>
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ef4444', opacity: 0.85 }} />
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#f59e0b', opacity: 0.85 }} />
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#10b981', opacity: 0.85 }} />
+                    </div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        background: 'rgba(15, 23, 42, 0.55)',
+                        padding: '3px 9px',
+                        borderRadius: '5px',
+                        fontSize: '12px',
+                        fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+                        color: '#cbd5e1',
+                        border: '1px solid rgba(255, 255, 255, 0.06)',
+                      }}
+                    >
+                      <Bot size={12} color="#93c5fd" />
+                      <span>dex-watcher-bot.ts</span>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      const code = `import { createClient, createAccount } from "genlayer-js";
 import { studionet } from "genlayer-js/chains";
 
 const KEEPER_PRIVATE_KEY = process.env.KEEPER_PRIVATE_KEY;
@@ -1760,52 +1935,83 @@ export async function reportDEXAnomaly(poolAddress, suspiciousTxHash, summary) {
   console.log(\`[CONSENSUS] Report registered on GenLayer StudioNet: \${txHash}\`);
   console.log("GenLayer AI validators are now independently verifying block explorer traces...");
 }`;
-                    navigator.clipboard.writeText(code);
-                    setCopiedSdk(true);
-                    setTimeout(() => setCopiedSdk(false), 2000);
-                  }}
-                  className="btn btn-secondary"
-                  style={{ padding: '6px 12px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
-                >
-                  {copiedSdk ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
-                  <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
-                </button>
+                      navigator.clipboard.writeText(code);
+                      setCopiedSdk(true);
+                      setTimeout(() => setCopiedSdk(false), 2000);
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      background: 'rgba(255, 255, 255, 0.08)',
+                      color: copiedSdk ? '#86efac' : '#e2e8f0',
+                      border: '1px solid rgba(255, 255, 255, 0.14)',
+                      padding: '5px 11px',
+                      borderRadius: '6px',
+                      fontSize: '12px',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease-in-out',
+                    }}
+                  >
+                    {copiedSdk ? <Check size={13} color="#86efac" /> : <Copy size={13} />}
+                    <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
+                  </button>
+                </div>
+
+                {/* Softened Syntax Code Area */}
+                <pre style={{ margin: 0, padding: '18px 20px', overflowX: 'auto', color: '#f1f5f9', fontSize: '13px', lineHeight: 1.65, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace' }}>
+                  <code>
+                    <span style={{ color: '#60a5fa' }}>import</span> {'{'} createClient, createAccount {'}'} <span style={{ color: '#60a5fa' }}>from</span> <span style={{ color: '#86efac' }}>"genlayer-js"</span>;{'\n'}
+                    <span style={{ color: '#60a5fa' }}>import</span> {'{'} studionet {'}'} <span style={{ color: '#60a5fa' }}>from</span> <span style={{ color: '#86efac' }}>"genlayer-js/chains"</span>;{'\n\n'}
+                    <span style={{ color: '#60a5fa' }}>const</span> KEEPER_PRIVATE_KEY = process.env.<span style={{ color: '#c084fc' }}>KEEPER_PRIVATE_KEY</span>;{'\n'}
+                    <span style={{ color: '#60a5fa' }}>const</span> WHITEHAT_CONTRACT = <span style={{ color: '#86efac' }}>"0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F"</span>;{'\n\n'}
+                    <span style={{ color: '#60a5fa' }}>const</span> client = <span style={{ color: '#fde047' }}>createClient</span>({'{'}{'\n'}
+                    {'    '}chain: studionet,{'\n'}
+                    {'    '}account: <span style={{ color: '#fde047' }}>createAccount</span>(KEEPER_PRIVATE_KEY){'\n'}
+                    {'}'});{'\n\n'}
+                    <span style={{ color: '#94a3b8' }}>// Autonomous Anomaly Watcher triggered on high-slippage reserve drain</span>{'\n'}
+                    <span style={{ color: '#60a5fa' }}>export async function</span> <span style={{ color: '#fde047' }}>reportDEXAnomaly</span>(poolAddress, suspiciousTxHash, summary) {'{'}{'\n'}
+                    {'    '}console.<span style={{ color: '#fde047' }}>log</span>(<span style={{ color: '#86efac' }}>`[WATCHER] Exploit anomaly detected in pool ${'${'}poolAddress${'}'}. Submitting to WhitehatAI...`</span>);{'\n\n'}
+                    {'    '}<span style={{ color: '#60a5fa' }}>const</span> txHash = <span style={{ color: '#60a5fa' }}>await</span> client.<span style={{ color: '#fde047' }}>writeContract</span>({'{'}{'\n'}
+                    {'        '}address: WHITEHAT_CONTRACT,{'\n'}
+                    {'        '}functionName: <span style={{ color: '#86efac' }}>"submit_exploit_report"</span>,{'\n'}
+                    {'        '}args: [{'\n'}
+                    {'            '}<span style={{ color: '#86efac' }}>"base"</span>,{'\n'}
+                    {'            '}poolAddress,{'\n'}
+                    {'            '}<span style={{ color: '#86efac' }}>`https://basescan.org/tx/${'${'}suspiciousTxHash${'}'}`</span>,{'\n'}
+                    {'            '}summary{'\n'}
+                    {'        '}]{'\n'}
+                    {'    }'});{'\n\n'}
+                    {'    '}console.<span style={{ color: '#fde047' }}>log</span>(<span style={{ color: '#86efac' }}>`[CONSENSUS] Report registered on GenLayer StudioNet: ${'${'}txHash${'}'}`</span>);{'\n'}
+                    {'    '}console.<span style={{ color: '#fde047' }}>log</span>(<span style={{ color: '#86efac' }}>"GenLayer AI validators are now independently verifying block explorer traces..."</span>);{'\n'}
+                    {'}'}
+                  </code>
+                </pre>
               </div>
 
-              <pre className="code-box" style={{ fontSize: '12px', lineHeight: 1.5 }}>
-{`import { createClient, createAccount } from "genlayer-js";
-import { studionet } from "genlayer-js/chains";
-
-const KEEPER_PRIVATE_KEY = process.env.KEEPER_PRIVATE_KEY;
-const WHITEHAT_CONTRACT = "0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F";
-
-const client = createClient({
-  chain: studionet,
-  account: createAccount(KEEPER_PRIVATE_KEY)
-});
-
-// Autonomous Anomaly Watcher triggered on high-slippage reserve drain
-export async function reportDEXAnomaly(poolAddress, suspiciousTxHash, summary) {
-  console.log(\`[WATCHER] Exploit anomaly detected in pool \${poolAddress}. Submitting to WhitehatAI...\`);
-
-  const txHash = await client.writeContract({
-    address: WHITEHAT_CONTRACT,
-    functionName: "submit_exploit_report",
-    args: [
-      "base",
-      poolAddress,
-      \`https://basescan.org/tx/\${suspiciousTxHash}\`,
-      summary
-    ]
-  });
-
-  console.log(\`[CONSENSUS] Report registered on GenLayer StudioNet: \${txHash}\`);
-  console.log("GenLayer AI validators are now independently verifying block explorer traces...");
-}`}
-              </pre>
-
-              <div style={{ marginTop: '14px', padding: '12px 16px', background: 'rgba(30, 41, 59, 0.04)', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '12px', color: 'var(--text-secondary)' }}>
-                ⚡ <strong>Validator Quorum:</strong> Once submitted, GenLayer AI validators query Basescan or Arbiscan in real-time. If the exploit math is verified, the circuit breaker trips automatically with zero human multisig lag.
+              {/* Execution Flow Text Area */}
+              <div
+                style={{
+                  marginTop: '14px',
+                  padding: '13px 18px',
+                  background: 'rgba(248, 250, 252, 0.9)',
+                  borderRadius: '8px',
+                  border: '1px solid #e2e8f0',
+                  fontSize: '13px',
+                  color: '#334155',
+                  lineHeight: 1.55,
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                }}
+              >
+                <div style={{ padding: '4px', background: 'rgba(37, 99, 235, 0.08)', borderRadius: '5px', color: '#2563eb', flexShrink: 0, marginTop: '1px' }}>
+                  <Zap size={15} />
+                </div>
+                <div>
+                  <strong style={{ color: '#0f172a', fontWeight: 600 }}>Validator Quorum:</strong> Once submitted, GenLayer AI validators query Basescan or Arbiscan in real-time. If the exploit math is verified, the circuit breaker trips automatically with zero human multisig lag.
+                </div>
               </div>
             </div>
           )}
@@ -1813,18 +2019,64 @@ export async function reportDEXAnomaly(poolAddress, suspiciousTxHash, summary) {
           {/* TAB 3: DEX Frontend Guard (React) */}
           {activeSdkTab === 'dex_frontend' && (
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                <div>
-                  <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)' }}>
-                    Protecting DEX Users in Frontend UI (React / Web3)
-                  </div>
-                  <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                    DEX web apps check WhitehatAI state to disable swaps and display a security alert before users submit transactions.
-                  </div>
+              <div style={{ marginBottom: '14px' }}>
+                <div style={{ fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>
+                  Protecting DEX Users in Frontend UI (React / Web3)
                 </div>
-                <button
-                  onClick={() => {
-                    const code = `import React, { useEffect, useState } from 'react';
+                <div style={{ fontSize: '13px', color: '#64748b', marginTop: '2px' }}>
+                  DEX web apps check WhitehatAI state to disable swaps and display a security alert before users submit transactions.
+                </div>
+              </div>
+
+              {/* Code Editor Container */}
+              <div
+                style={{
+                  background: '#0f172a',
+                  borderRadius: '10px',
+                  border: '1px solid rgba(148, 163, 184, 0.2)',
+                  boxShadow: '0 10px 24px -4px rgba(15, 23, 42, 0.24), 0 2px 6px -1px rgba(15, 23, 42, 0.1)',
+                  overflow: 'hidden',
+                }}
+              >
+                {/* Editor Header Bar */}
+                <div
+                  style={{
+                    background: '#1e293b',
+                    padding: '9px 16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <div style={{ display: 'flex', gap: '6px' }}>
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ef4444', opacity: 0.85 }} />
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#f59e0b', opacity: 0.85 }} />
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#10b981', opacity: 0.85 }} />
+                    </div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        background: 'rgba(15, 23, 42, 0.55)',
+                        padding: '3px 9px',
+                        borderRadius: '5px',
+                        fontSize: '12px',
+                        fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+                        color: '#cbd5e1',
+                        border: '1px solid rgba(255, 255, 255, 0.06)',
+                      }}
+                    >
+                      <Globe size={12} color="#93c5fd" />
+                      <span>DEXSwapButton.tsx</span>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      const code = `import React, { useEffect, useState } from 'react';
 import { createClient } from 'genlayer-js';
 import { studionet } from 'genlayer-js/chains';
 
@@ -1865,64 +2117,95 @@ export function DEXSwapButton({ poolAddress, onExecuteSwap }) {
     </button>
   );
 }`;
-                    navigator.clipboard.writeText(code);
-                    setCopiedSdk(true);
-                    setTimeout(() => setCopiedSdk(false), 2000);
-                  }}
-                  className="btn btn-secondary"
-                  style={{ padding: '6px 12px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
-                >
-                  {copiedSdk ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
-                  <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
-                </button>
+                      navigator.clipboard.writeText(code);
+                      setCopiedSdk(true);
+                      setTimeout(() => setCopiedSdk(false), 2000);
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      background: 'rgba(255, 255, 255, 0.08)',
+                      color: copiedSdk ? '#86efac' : '#e2e8f0',
+                      border: '1px solid rgba(255, 255, 255, 0.14)',
+                      padding: '5px 11px',
+                      borderRadius: '6px',
+                      fontSize: '12px',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease-in-out',
+                    }}
+                  >
+                    {copiedSdk ? <Check size={13} color="#86efac" /> : <Copy size={13} />}
+                    <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
+                  </button>
+                </div>
+
+                {/* Softened Syntax Code Area */}
+                <pre style={{ margin: 0, padding: '18px 20px', overflowX: 'auto', color: '#f1f5f9', fontSize: '13px', lineHeight: 1.65, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace' }}>
+                  <code>
+                    <span style={{ color: '#60a5fa' }}>import</span> React, {'{'} useEffect, useState {'}'} <span style={{ color: '#60a5fa' }}>from</span> <span style={{ color: '#86efac' }}>'react'</span>;{'\n'}
+                    <span style={{ color: '#60a5fa' }}>import</span> {'{'} createClient {'}'} <span style={{ color: '#60a5fa' }}>from</span> <span style={{ color: '#86efac' }}>'genlayer-js'</span>;{'\n'}
+                    <span style={{ color: '#60a5fa' }}>import</span> {'{'} studionet {'}'} <span style={{ color: '#60a5fa' }}>from</span> <span style={{ color: '#86efac' }}>'genlayer-js/chains'</span>;{'\n\n'}
+                    <span style={{ color: '#60a5fa' }}>const</span> WHITEHAT_CONTRACT = <span style={{ color: '#86efac' }}>"0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F"</span>;{'\n\n'}
+                    <span style={{ color: '#60a5fa' }}>export function</span> <span style={{ color: '#fde047' }}>DEXSwapButton</span>({'{'} poolAddress, onExecuteSwap {'}'}) {'{'}{'\n'}
+                    {'    '}<span style={{ color: '#60a5fa' }}>const</span> [isHalted, setIsHalted] = <span style={{ color: '#fde047' }}>useState</span>(<span style={{ color: '#60a5fa' }}>false</span>);{'\n'}
+                    {'    '}<span style={{ color: '#60a5fa' }}>const</span> [checking, setChecking] = <span style={{ color: '#fde047' }}>useState</span>(<span style={{ color: '#60a5fa' }}>true</span>);{'\n\n'}
+                    {'    '}<span style={{ color: '#fde047' }}>useEffect</span>(() =&gt; {'{'}{'\n'}
+                    {'        '}<span style={{ color: '#60a5fa' }}>const</span> client = <span style={{ color: '#fde047' }}>createClient</span>({'{'} chain: studionet {'}'});{'\n'}
+                    {'        '}<span style={{ color: '#60a5fa' }}>async function</span> <span style={{ color: '#fde047' }}>verifyPoolSafety</span>() {'{'}{'\n'}
+                    {'            '}<span style={{ color: '#60a5fa' }}>try</span> {'{'}{'\n'}
+                    {'                '}<span style={{ color: '#60a5fa' }}>const</span> halted = <span style={{ color: '#60a5fa' }}>await</span> client.<span style={{ color: '#fde047' }}>readContract</span>({'{'}{'\n'}
+                    {'                    '}address: WHITEHAT_CONTRACT,{'\n'}
+                    {'                    '}functionName: <span style={{ color: '#86efac' }}>"is_halted"</span>,{'\n'}
+                    {'                    '}args: [poolAddress]{'\n'}
+                    {'                }'});{'\n'}
+                    {'                '}<span style={{ color: '#fde047' }}>setIsHalted</span>(<span style={{ color: '#60a5fa' }}>Boolean</span>(halted));{'\n'}
+                    {'            }'} <span style={{ color: '#60a5fa' }}>finally</span> {'{'}{'\n'}
+                    {'                '}<span style={{ color: '#fde047' }}>setChecking</span>(<span style={{ color: '#60a5fa' }}>false</span>);{'\n'}
+                    {'            }'}{'\n'}
+                    {'        }'}{'\n'}
+                    {'        '}<span style={{ color: '#fde047' }}>verifyPoolSafety</span>();{'\n'}
+                    {'    }'}, [poolAddress]);{'\n\n'}
+                    {'    '}<span style={{ color: '#60a5fa' }}>if</span> (isHalted) {'{'}{'\n'}
+                    {'        '}<span style={{ color: '#60a5fa' }}>return</span> ({'\n'}
+                    {'            '}&lt;<span style={{ color: '#c084fc' }}>div</span> style={'{'}{'{'} background: <span style={{ color: '#86efac' }}>'#fee2e2'</span>, color: <span style={{ color: '#86efac' }}>'#991b1b'</span>, padding: <span style={{ color: '#86efac' }}>'12px'</span>, borderRadius: <span style={{ color: '#86efac' }}>'8px'</span>, fontWeight: 600 {'}'}{'}'}&gt;{'\n'}
+                    {'                '}🛑 Emergency Pause Active: WhitehatAI circuit breaker triggered to protect liquidity. Swaps temporarily frozen.{'\n'}
+                    {'            '}&lt;/<span style={{ color: '#c084fc' }}>div</span>&gt;{'\n'}
+                    {'        '});{'\n'}
+                    {'    }'}{'\n\n'}
+                    {'    '}<span style={{ color: '#60a5fa' }}>return</span> ({'\n'}
+                    {'        '}&lt;<span style={{ color: '#c084fc' }}>button</span> disabled={'{'}checking{'}'} onClick={'{'}onExecuteSwap{'}'} className=<span style={{ color: '#86efac' }}>"btn-swap"</span>&gt;{'\n'}
+                    {'            '}{'{'}checking ? <span style={{ color: '#86efac' }}>"Checking Security State..."</span> : <span style={{ color: '#86efac' }}>"Execute Swap"</span>{'}'}{'\n'}
+                    {'        '}&lt;/<span style={{ color: '#c084fc' }}>button</span>&gt;{'\n'}
+                    {'    '});{'\n'}
+                    {'}'}
+                  </code>
+                </pre>
               </div>
 
-              <pre className="code-box" style={{ fontSize: '12px', lineHeight: 1.5 }}>
-{`import React, { useEffect, useState } from 'react';
-import { createClient } from 'genlayer-js';
-import { studionet } from 'genlayer-js/chains';
-
-const WHITEHAT_CONTRACT = "0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F";
-
-export function DEXSwapButton({ poolAddress, onExecuteSwap }) {
-  const [isHalted, setIsHalted] = useState(false);
-  const [checking, setChecking] = useState(true);
-
-  useEffect(() => {
-    const client = createClient({ chain: studionet });
-    async function verifyPoolSafety() {
-      try {
-        const halted = await client.readContract({
-          address: WHITEHAT_CONTRACT,
-          functionName: "is_halted",
-          args: [poolAddress]
-        });
-        setIsHalted(Boolean(halted));
-      } finally {
-        setChecking(false);
-      }
-    }
-    verifyPoolSafety();
-  }, [poolAddress]);
-
-  if (isHalted) {
-    return (
-      <div style={{ background: '#fee2e2', color: '#991b1b', padding: '12px', borderRadius: '8px', fontWeight: 600 }}>
-        🛑 Emergency Pause Active: WhitehatAI circuit breaker triggered to protect liquidity. Swaps temporarily frozen.
-      </div>
-    );
-  }
-
-  return (
-    <button disabled={checking} onClick={onExecuteSwap} className="btn-swap">
-      {checking ? "Checking Security State..." : "Execute Swap"}
-    </button>
-  );
-}`}
-              </pre>
-
-              <div style={{ marginTop: '14px', padding: '12px 16px', background: 'rgba(30, 41, 59, 0.04)', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '12px', color: 'var(--text-secondary)' }}>
-                💡 <strong>User Safety:</strong> Normal users never lose gas on failed transactions during an exploit; the frontend prevents execution before signing.
+              {/* Execution Flow Text Area */}
+              <div
+                style={{
+                  marginTop: '14px',
+                  padding: '13px 18px',
+                  background: 'rgba(248, 250, 252, 0.9)',
+                  borderRadius: '8px',
+                  border: '1px solid #e2e8f0',
+                  fontSize: '13px',
+                  color: '#334155',
+                  lineHeight: 1.55,
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                }}
+              >
+                <div style={{ padding: '4px', background: 'rgba(37, 99, 235, 0.08)', borderRadius: '5px', color: '#2563eb', flexShrink: 0, marginTop: '1px' }}>
+                  <Globe size={15} />
+                </div>
+                <div>
+                  <strong style={{ color: '#0f172a', fontWeight: 600 }}>User Safety:</strong> Normal users never lose gas fees on failed transactions during an exploit; the frontend prevents execution and alerts the user before signature.
+                </div>
               </div>
             </div>
           )}
@@ -1930,18 +2213,64 @@ export function DEXSwapButton({ poolAddress, onExecuteSwap }) {
           {/* TAB 4: GenLayer Intelligent Contract (Python) */}
           {activeSdkTab === 'genlayer_python' && (
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                <div>
-                  <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-primary)' }}>
-                    Cross-Contract Guard for GenLayer Intelligent Contracts
-                  </div>
-                  <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                    Any Python intelligent contract on GenLayer queries WhitehatAI synchronously in smart contract state.
-                  </div>
+              <div style={{ marginBottom: '14px' }}>
+                <div style={{ fontSize: '15px', fontWeight: 700, color: '#0f172a' }}>
+                  Cross-Contract Guard for GenLayer Intelligent Contracts
                 </div>
-                <button
-                  onClick={() => {
-                    const code = `# Inside your GenLayer Python Intelligent Contract
+                <div style={{ fontSize: '13px', color: '#64748b', marginTop: '2px' }}>
+                  Any Python intelligent contract on GenLayer queries WhitehatAI synchronously in smart contract state.
+                </div>
+              </div>
+
+              {/* Code Editor Container */}
+              <div
+                style={{
+                  background: '#0f172a',
+                  borderRadius: '10px',
+                  border: '1px solid rgba(148, 163, 184, 0.2)',
+                  boxShadow: '0 10px 24px -4px rgba(15, 23, 42, 0.24), 0 2px 6px -1px rgba(15, 23, 42, 0.1)',
+                  overflow: 'hidden',
+                }}
+              >
+                {/* Editor Header Bar */}
+                <div
+                  style={{
+                    background: '#1e293b',
+                    padding: '9px 16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <div style={{ display: 'flex', gap: '6px' }}>
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ef4444', opacity: 0.85 }} />
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#f59e0b', opacity: 0.85 }} />
+                      <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#10b981', opacity: 0.85 }} />
+                    </div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        background: 'rgba(15, 23, 42, 0.55)',
+                        padding: '3px 9px',
+                        borderRadius: '5px',
+                        fontSize: '12px',
+                        fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+                        color: '#cbd5e1',
+                        border: '1px solid rgba(255, 255, 255, 0.06)',
+                      }}
+                    >
+                      <Code2 size={12} color="#93c5fd" />
+                      <span>AutonomousAgentVault.py</span>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      const code = `# Inside your GenLayer Python Intelligent Contract
 from genlayer import *
 
 @gl.contract
@@ -1957,39 +2286,72 @@ class AutonomousAgentVault:
 
         # 2. Proceed with trade execution safely
         return "TRADE_EXECUTED"`;
-                    navigator.clipboard.writeText(code);
-                    setCopiedSdk(true);
-                    setTimeout(() => setCopiedSdk(false), 2000);
-                  }}
-                  className="btn btn-secondary"
-                  style={{ padding: '6px 12px', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}
-                >
-                  {copiedSdk ? <Check size={14} color="#16a34a" /> : <Copy size={14} />}
-                  <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
-                </button>
+                      navigator.clipboard.writeText(code);
+                      setCopiedSdk(true);
+                      setTimeout(() => setCopiedSdk(false), 2000);
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      background: 'rgba(255, 255, 255, 0.08)',
+                      color: copiedSdk ? '#86efac' : '#e2e8f0',
+                      border: '1px solid rgba(255, 255, 255, 0.14)',
+                      padding: '5px 11px',
+                      borderRadius: '6px',
+                      fontSize: '12px',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease-in-out',
+                    }}
+                  >
+                    {copiedSdk ? <Check size={13} color="#86efac" /> : <Copy size={13} />}
+                    <span>{copiedSdk ? 'Copied!' : 'Copy Code'}</span>
+                  </button>
+                </div>
+
+                {/* Softened Syntax Code Area */}
+                <pre style={{ margin: 0, padding: '18px 20px', overflowX: 'auto', color: '#f1f5f9', fontSize: '13px', lineHeight: 1.65, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace' }}>
+                  <code>
+                    <span style={{ color: '#94a3b8' }}># Inside your GenLayer Python Intelligent Contract</span>{'\n'}
+                    <span style={{ color: '#60a5fa' }}>from</span> genlayer <span style={{ color: '#60a5fa' }}>import</span> *{'\n\n'}
+                    <span style={{ color: '#60a5fa' }}>@gl.contract</span>{'\n'}
+                    <span style={{ color: '#60a5fa' }}>class</span> <span style={{ color: '#c084fc' }}>AutonomousAgentVault</span>:{'\n'}
+                    {'    '}whitehat_address: <span style={{ color: '#c084fc' }}>Address</span>{'\n\n'}
+                    {'    '}<span style={{ color: '#60a5fa' }}>@gl.public.write</span>{'\n'}
+                    {'    '}<span style={{ color: '#60a5fa' }}>def</span> <span style={{ color: '#fde047' }}>execute_arbitrage</span>(self, target_pool: <span style={{ color: '#c084fc' }}>str</span>, amount: <span style={{ color: '#c084fc' }}>u256</span>):{'\n'}
+                    {'        '}<span style={{ color: '#94a3b8' }}># 1. Query WhitehatAI Circuit Breaker Synchronously</span>{'\n'}
+                    {'        '}whitehat = gl.<span style={{ color: '#fde047' }}>get_contract</span>(self.whitehat_address){'\n'}
+                    {'        '}<span style={{ color: '#60a5fa' }}>if</span> whitehat.<span style={{ color: '#fde047' }}>is_halted</span>(target_pool):{'\n'}
+                    {'            '}<span style={{ color: '#60a5fa' }}>raise</span> gl.<span style={{ color: '#c084fc' }}>UserError</span>(<span style={{ color: '#86efac' }}>"CIRCUIT_BREAKER_ACTIVE: Target pool is under emergency exploit halt!"</span>){'\n\n'}
+                    {'        '}<span style={{ color: '#94a3b8' }}># 2. Proceed with trade execution safely</span>{'\n'}
+                    {'        '}<span style={{ color: '#60a5fa' }}>return</span> <span style={{ color: '#86efac' }}>"TRADE_EXECUTED"</span>{'\n'}
+                  </code>
+                </pre>
               </div>
 
-              <pre className="code-box" style={{ fontSize: '12px', lineHeight: 1.5 }}>
-{`# Inside your GenLayer Python Intelligent Contract
-from genlayer import *
-
-@gl.contract
-class AutonomousAgentVault:
-    whitehat_address: Address
-
-    @gl.public.write
-    def execute_arbitrage(self, target_pool: str, amount: u256):
-        # 1. Query WhitehatAI Circuit Breaker Synchronously
-        whitehat = gl.get_contract(self.whitehat_address)
-        if whitehat.is_halted(target_pool):
-            raise gl.UserError("CIRCUIT_BREAKER_ACTIVE: Target pool is under emergency exploit halt!")
-
-        # 2. Proceed with trade execution safely
-        return "TRADE_EXECUTED"`}
-              </pre>
-
-              <div style={{ marginTop: '14px', padding: '12px 16px', background: 'rgba(30, 41, 59, 0.04)', borderRadius: '8px', border: '1px solid var(--border-subtle)', fontSize: '12px', color: 'var(--text-secondary)' }}>
-                ⚡ <strong>Synchronous GenVM Execution:</strong> Cross-contract reads in GenVM are instant and deterministic without requiring asynchronous message bridges.
+              {/* Execution Flow Text Area */}
+              <div
+                style={{
+                  marginTop: '14px',
+                  padding: '13px 18px',
+                  background: 'rgba(248, 250, 252, 0.9)',
+                  borderRadius: '8px',
+                  border: '1px solid #e2e8f0',
+                  fontSize: '13px',
+                  color: '#334155',
+                  lineHeight: 1.55,
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '10px',
+                }}
+              >
+                <div style={{ padding: '4px', background: 'rgba(37, 99, 235, 0.08)', borderRadius: '5px', color: '#2563eb', flexShrink: 0, marginTop: '1px' }}>
+                  <Code2 size={15} />
+                </div>
+                <div>
+                  <strong style={{ color: '#0f172a', fontWeight: 600 }}>Synchronous GenVM Execution:</strong> Cross-contract reads in GenVM are instant and deterministic without requiring asynchronous message bridges.
+                </div>
               </div>
             </div>
           )}
