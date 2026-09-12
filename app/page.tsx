@@ -34,6 +34,52 @@ import {
 import { ProtocolProfile, ExploitReport, ThreatScenario, ChainId } from '@/lib/types';
 import { CONTRACT_ADDRESS, getExplorerUrl } from '@/lib/genlayer';
 
+function ChainLogo({ chainId, size = 20 }: { chainId: string; size?: number }) {
+  const norm = chainId.toLowerCase();
+  if (norm === 'base') {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+        <circle cx="12" cy="12" r="12" fill="#0052FF" />
+        <path fillRule="evenodd" clipRule="evenodd" d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM12 6.5C8.96243 6.5 6.5 8.96243 6.5 12C6.5 15.0376 8.96243 17.5 12 17.5C15.0376 17.5 17.5 15.0376 17.5 12C17.5 8.96243 15.0376 6.5 12 6.5Z" fill="white" />
+      </svg>
+    );
+  }
+  if (norm === 'arbitrum') {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+        <circle cx="12" cy="12" r="12" fill="#28A0F0" />
+        <path d="M12 4.5L6.5 13.5L8.5 16.8L12 13.8L15.5 16.8L17.5 13.5L12 4.5Z" fill="white" />
+        <path d="M12 10.2L9.5 14.3L12 12.4L14.5 14.3L12 10.2Z" fill="#1B2559" />
+        <path d="M12 14.8L9 17.3L12 19.5L15 17.3L12 14.8Z" fill="white" />
+      </svg>
+    );
+  }
+  if (norm === 'ethereum') {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+        <circle cx="12" cy="12" r="12" fill="#627EEA" />
+        <path d="M12 4.5L11.88 4.9V14.38L12 14.5L16.17 12.03L12 4.5Z" fill="white" fillOpacity="0.6" />
+        <path d="M12 4.5L7.83 12.03L12 14.5V4.5Z" fill="white" />
+        <path d="M12 15.24L11.93 15.33V18.7L12 18.9L16.17 12.87L12 15.24Z" fill="white" fillOpacity="0.6" />
+        <path d="M12 18.9V15.24L7.83 12.87L12 18.9Z" fill="white" />
+        <path d="M12 14.5L16.17 12.03L12 9.61V14.5Z" fill="white" fillOpacity="0.2" />
+        <path d="M7.83 12.03L12 14.5V9.61L7.83 12.03Z" fill="white" fillOpacity="0.6" />
+      </svg>
+    );
+  }
+  if (norm === 'genlayer') {
+    return (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+        <circle cx="12" cy="12" r="12" fill="#0284c7" />
+        <path d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5Z" stroke="white" strokeWidth="1.6" strokeLinejoin="round" />
+        <circle cx="12" cy="12" r="2.4" fill="white" />
+        <path d="M12 5.5V9.6M17.5 15.3L14 13.3M6.5 15.3L10 13.3" stroke="white" strokeWidth="1.4" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  return null;
+}
+
 export default function HomePage() {
   const [protocols, setProtocols] = useState<ProtocolProfile[]>(INITIAL_PROTOCOLS);
   const [reports, setReports] = useState<ExploitReport[]>(INITIAL_HISTORICAL_REPORTS);
@@ -925,7 +971,8 @@ export default function HomePage() {
               style={{ padding: '24px' }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
-                <span className={`chain-pill chain-${proto.chain_id}`}>
+                <span className={`chain-pill chain-${proto.chain_id}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  <ChainLogo chainId={proto.chain_id} size={14} />
                   {proto.chain_id.toUpperCase()}
                 </span>
                 {proto.is_halted ? (
@@ -939,9 +986,14 @@ export default function HomePage() {
                 )}
               </div>
 
-              <h3 className="font-display" style={{ fontSize: '18px', fontWeight: 700, marginBottom: '6px' }}>
-                {proto.protocol_name}
-              </h3>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
+                <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.06))' }}>
+                  <ChainLogo chainId={proto.chain_id} size={24} />
+                </div>
+                <h3 className="font-display" style={{ fontSize: '18px', fontWeight: 700, margin: 0, color: '#0f172a' }}>
+                  {proto.protocol_name}
+                </h3>
+              </div>
               <div
                 style={{
                   fontSize: '12px',
@@ -1500,7 +1552,8 @@ export default function HomePage() {
               {/* Header row: Chain, ID, Status, Timestamp, Bounty */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '10px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                  <span className={`chain-pill chain-${rep.chain_id}`}>
+                  <span className={`chain-pill chain-${rep.chain_id}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                    <ChainLogo chainId={rep.chain_id} size={13} />
                     {rep.chain_id.toUpperCase()}
                   </span>
                   <span className="font-mono" style={{ fontWeight: 700, fontSize: '13px', color: '#1e293b' }}>
@@ -1581,11 +1634,16 @@ export default function HomePage() {
                       fontWeight: 600,
                       textDecoration: 'none',
                       transition: 'color 0.15s ease',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      verticalAlign: 'middle',
                     }}
                     onMouseEnter={(e) => (e.currentTarget.style.textDecoration = 'underline')}
                     onMouseLeave={(e) => (e.currentTarget.style.textDecoration = 'none')}
                   >
-                    {rep.protocol_name}
+                    <ChainLogo chainId={rep.chain_id} size={15} />
+                    <span>{rep.protocol_name}</span>
                   </a>
                   <span style={{ color: '#4b5563' }}> ({rep.target_address.slice(0, 10)}...)</span>
                 </div>
