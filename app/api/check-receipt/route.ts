@@ -28,11 +28,12 @@ export async function POST(request: Request) {
         // Query live on-chain contract state
         let isHalted = false;
         try {
-          isHalted = await client.readContract({
+          const res = await client.readContract({
             address: CONTRACT_ADDRESS,
             functionName: 'is_halted',
             args: [targetAddress],
           });
+          isHalted = Boolean(res);
         } catch (e) {
           isHalted = true;
         }
@@ -54,7 +55,8 @@ export async function POST(request: Request) {
         };
 
         const action = isHalted ? 'EMERGENCY_HALT' : 'DISMISS_FALSE_ALARM';
-        const reportId = `SZ-${stats?.report_nonce || Math.floor(200 + Math.random() * 800)}`;
+        const reportNonce = (stats as Record<string, any>)?.report_nonce;
+        const reportId = `SZ-${reportNonce || Math.floor(200 + Math.random() * 800)}`;
         const bountyAwarded = isHalted ? 12500 : 0;
 
         return NextResponse.json({

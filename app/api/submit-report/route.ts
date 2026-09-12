@@ -36,6 +36,7 @@ export async function POST(request: Request) {
         attackType,
         finalSummary,
       ],
+      value: BigInt(0),
     });
 
     const explorerUrl = `https://explorer-studio.genlayer.com/address/${CONTRACT_ADDRESS}`;
