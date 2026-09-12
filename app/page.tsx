@@ -451,7 +451,7 @@ export default function HomePage() {
 
             {/* WhitehatAI Autonomous Exploit Interceptor Robot */}
             <img
-              src="/hero-sentinel.png?v=4"
+              src="/hero-whitehat.png?v=5"
               alt="WhitehatAI Autonomous Exploit Interceptor"
               className="hero-judge-img"
               style={{

@@ -36,7 +36,7 @@ export default function Navbar() {
           }}
         >
           <div className="brand-logo-wrap">
-            <img src="/sentinel-logo.png?v=4" alt="WhitehatAI Logo" className="brand-logo-img" />
+            <img src="/whitehat-logo.png?v=5" alt="WhitehatAI Logo" className="brand-logo-img" />
           </div>
           <span className="brand-title">WHITEHAT AI</span>
         </div>

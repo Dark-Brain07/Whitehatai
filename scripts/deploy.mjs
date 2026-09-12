@@ -6,7 +6,7 @@ import { TransactionStatus } from "genlayer-js/types";
 
 async function main() {
   process.stdout.write("====================================================\n");
-  process.stdout.write("   SentinelZero — GenLayer StudioNet Deployment     \n");
+  process.stdout.write("   WhitehatAI — GenLayer StudioNet Deployment       \n");
   process.stdout.write("====================================================\n\n");
 
   let rawKey = process.env.DEPLOYER_PRIVATE_KEY?.trim();
@@ -21,7 +21,7 @@ async function main() {
   const contractPath = new URL("../contracts/SentinelZero.py", import.meta.url);
   const code = await readFile(contractPath, "utf8");
 
-  process.stdout.write("Submitting SentinelZero contract deployment to StudioNet...\n");
+  process.stdout.write("Submitting WhitehatAI contract deployment to StudioNet...\n");
   const hash = await client.deployContract({
     code,
     args: [],

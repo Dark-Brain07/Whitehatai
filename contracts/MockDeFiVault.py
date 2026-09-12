@@ -8,9 +8,9 @@ class MockDeFiVault(gl.Contract):
     """
     Reference Protected DeFi Vault:
     Demonstrates how any DeFi protocol, lending pool, or yield aggregator
-    integrates SentinelZero circuit breaker in 3 lines of code.
+    integrates WhitehatAI circuit breaker in 3 lines of code.
     Before executing critical deposits, withdrawals, or liquidations,
-    it queries SentinelZero.is_halted().
+    it queries WhitehatAI.is_halted().
     """
 
     owner: Address
@@ -42,7 +42,7 @@ class MockDeFiVault(gl.Contract):
     def withdraw(self, amount_atto: u256) -> str:
         """
         Protected withdrawal function:
-        Circuit breaker query blocks all withdrawals instantly if SentinelZero has triggered a halt.
+        Circuit breaker query blocks all withdrawals instantly if WhitehatAI has triggered a halt.
         """
         sentinel = gl.get_contract(self.sentinel_address)
         if sentinel.is_halted(str(self.address)):

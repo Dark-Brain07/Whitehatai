@@ -4,9 +4,9 @@ from genlayer import *
 import json
 
 
-class SentinelZero(gl.Contract):
+class WhitehatAI(gl.Contract):
     """
-    WhitehatAI (formerly SentinelZero): Autonomous Cross-Chain Emergency Circuit Breaker.
+    WhitehatAI: Autonomous Cross-Chain Emergency Circuit Breaker.
     Monitors protocols across Base, Arbitrum, Ethereum, and GenLayer.
     When an active exploit, unauthorized drain, or reentrancy is reported,
     GenLayer validators independently fetch the on-chain evidence (Basescan/Etherscan/RPC/Advisory),
@@ -334,3 +334,7 @@ class SentinelZero(gl.Contract):
             self.protocols[proto_key] = json.dumps(loaded, sort_keys=True)
 
         return "HALT_LIFTED:" + proto_key
+
+
+# Backward compatibility alias
+SentinelZero = WhitehatAI

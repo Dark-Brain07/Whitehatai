@@ -5,7 +5,7 @@ import { TransactionStatus } from "genlayer-js/types";
 
 async function main() {
   process.stdout.write("====================================================\n");
-  process.stdout.write("  SentinelZero — Live StudioNet Transaction Runner  \n");
+  process.stdout.write("  WhitehatAI — Live StudioNet Transaction Runner    \n");
   process.stdout.write("====================================================\n\n");
 
   const deploymentRaw = await readFile(new URL("../.deployment/deployment.json", import.meta.url), "utf8");

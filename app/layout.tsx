@@ -56,7 +56,7 @@ export default function RootLayout({
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <img
-                src="/sentinel-logo.png?v=4"
+                src="/whitehat-logo.png?v=5"
                 alt="WhitehatAI Logo"
                 style={{
                   height: '38px',

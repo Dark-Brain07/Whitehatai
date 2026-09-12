@@ -113,7 +113,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the interactive Thre
 
 ### 3. Lint Contract with GenVM
 ```bash
-genvm-lint check contracts/SentinelZero.py --json
+genvm-lint check contracts/WhitehatAI.py --json
 ```
 
 ### 4. Deploy to GenLayer StudioNet
