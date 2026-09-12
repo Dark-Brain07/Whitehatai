@@ -1,0 +1,45 @@
+# GenLayer Agent Tank Hackathon Submission Form
+
+### Project Title
+WhitehatAI: Autonomous Cross-Chain Emergency Circuit Breaker & Exploit Adjudicator
+
+### Hackathon Track
+Autonomous Protocols ("Emergency halt module. Pauses a target contract when anyone proves an active exploit.")
+
+### Tag Selection (Points Portal)
+- Primary Tag: AI & Agents (or Other)
+- Sub-Tag 1: Workflow Automation
+- Sub-Tag 2: Protocol Experiment
+
+### Short Description (Elevator Pitch)
+WhitehatAI is an autonomous emergency circuit breaker protocol that monitors DeFi contracts across Base, Arbitrum, and Ethereum. When an active exploit, reentrancy drain, or oracle manipulation is reported, GenLayer web-connected validators independently fetch the on-chain transaction trace, evaluate the vulnerability using LLM comparative consensus, and autonomously trigger an emergency pause on the target contract before remaining funds are drained.
+
+### The Problem It Solves
+Smart contract exploits drain millions in seconds because human multisig committees and security teams take hours or days to react. Today, protocols on Base or Ethereum cannot autonomously verify external web evidence or complex exploit receipts without centralized single points of failure.
+
+### How It Uses GenLayer's Superpowers
+1. Cross-Chain Adjudication: Implements GenLayer's "Build on Base / Arbitrum / Ethereum. Adjudicate on GenLayer" architecture. Contracts remain on Base or Arbitrum, while threat verification is offloaded to GenLayer.
+2. Web-Connected Validators: GenLayer validators independently query block explorer traces (Basescan / Etherscan / Arbiscan) and security advisories without centralized oracles.
+3. Multi-Model Comparative Consensus: Uses `gl.eq_principle.prompt_comparative` across multiple diverse AI models (Claude 3.5, GPT-5.4, Gemini 3 Flash) to verify unauthorized balance drainage and invariant violations.
+4. Autonomous Execution: The contract transitions the target protocol into EMERGENCY_HALT with zero human voting, and awards the whitehat reporter a bounty from the protocol's security pool while slashing false alarm griefers.
+
+### Links
+- Contract Address: `0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F`
+- Explorer Link: https://explorer-studio.genlayer.com/address/0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F
+- Studio Import: https://studio.genlayer.com/?import-contract=0xA38Ab4F28062721c19ea1cB4052F24aaB19d3C4F
+- Public GitHub Repository: https://github.com/Dark-Brain07/Whitehatai
+
+### Verified Live On-Chain Transactions (StudioNet)
+1. Contract Deployment Tx: `0xca7f5764fded1493d209f802c703bb93cfe195a45826e8b9c5972a38309e77f8`
+2. Base Protocol Registration Tx: `0xeb39fe18f039bb3652cd13087bf486763bbcd434d241b86602a43b3cd3502008`
+3. Arbitrum Protocol Registration Tx: `0x54da7f2686f2e1d843a7e917018ef13b8c3794dbaf30648b5dfb7df2c56d918d`
+4. Exploit AI Consensus (False Alarm Dismissal) Tx: `0xfe50838e043772945d8442bd0ae3c4372d87412fad9f1b4b129d4e546fde7f2b`
+5. Critical Exploit Emergency Halt (Circuit Breaker Tripped) Tx: `0x211add68df45e3d39b8410fb9dbfb2259e8224864816eafc78f78cd9cc2aa914`
+
+### 6-Point Crucible V2 Audit Results
+- Storage Pre-Extraction Audit: PASSED (All state pre-extracted to local primitives prior to non-deterministic closure)
+- Pinned Runner Dependency Audit: PASSED (Pinned py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6)
+- Fallback & Zero-Revert Evidence Audit: PASSED (Defensive URL parsing with fallback string)
+- Consensus Equivalence Principle Audit: PASSED (Comparative validation on substantive outcome)
+- AST & SDK Lint Audit: PASSED (genvm-lint check 0 errors)
+- Live Chain Adjudication Audit: PASSED (Finalized on StudioNet)
