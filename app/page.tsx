@@ -38,9 +38,18 @@ function ChainLogo({ chainId, size = 20 }: { chainId: string; size?: number }) {
   const norm = chainId.toLowerCase();
   if (norm === 'base') {
     return (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-        <circle cx="12" cy="12" r="12" fill="#0052FF" />
-        <path fillRule="evenodd" clipRule="evenodd" d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM12 6.5C8.96243 6.5 6.5 8.96243 6.5 12C6.5 15.0376 8.96243 17.5 12 17.5C15.0376 17.5 17.5 15.0376 17.5 12C17.5 8.96243 15.0376 6.5 12 6.5Z" fill="white" />
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 1280 1280"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ display: 'inline-block', verticalAlign: 'middle', borderRadius: size > 20 ? '4px' : '3px' }}
+      >
+        <path
+          d="M0 101.12c0-34.64 0-51.95 6.53-65.28 6.25-12.76 16.56-23.07 29.32-29.32C49.17 0 66.48 0 101.12 0h1077.76c34.63 0 51.96 0 65.28 6.53 12.75 6.25 23.06 16.56 29.32 29.32 6.52 13.32 6.52 30.64 6.52 65.28v1077.76c0 34.63 0 51.96-6.52 65.28-6.26 12.75-16.57 23.06-29.32 29.32-13.32 6.52-30.65 6.52-65.28 6.52H101.12c-34.64 0-51.95 0-65.28-6.52-12.76-6.26-23.07-16.57-29.32-29.32-6.53-13.32-6.53-30.65-6.53-65.28V101.12Z"
+          fill="#0052FF"
+        />
       </svg>
     );
   }
@@ -97,11 +106,29 @@ function ChainLogo({ chainId, size = 20 }: { chainId: string; size?: number }) {
   }
   if (norm === 'genlayer') {
     return (
-      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-        <circle cx="12" cy="12" r="12" fill="#0284c7" />
-        <path d="M12 5.5L17.5 8.7V15.3L12 18.5L6.5 15.3V8.7L12 5.5Z" stroke="white" strokeWidth="1.6" strokeLinejoin="round" />
-        <circle cx="12" cy="12" r="2.4" fill="white" />
-        <path d="M12 5.5V9.6M17.5 15.3L14 13.3M6.5 15.3L10 13.3" stroke="white" strokeWidth="1.4" strokeLinecap="round" />
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ display: 'inline-block', verticalAlign: 'middle', borderRadius: size > 20 ? '5px' : '3px' }}
+      >
+        <rect width="100" height="100" rx="24" fill="#000000" />
+        <g transform="translate(21.1, 23.5) scale(0.58)">
+          <polygon
+            points="44.26 32.35 27.72 67.12 43.29 74.9 0 91.93 44.26 0 44.26 32.35"
+            fill="#FFFFFF"
+          />
+          <polygon
+            points="53.5 32.35 70.04 67.12 54.47 74.9 97.76 91.93 53.5 0 53.5 32.35"
+            fill="#FFFFFF"
+          />
+          <polygon
+            points="48.64 43.78 58.33 62.94 48.64 67.69 39.47 62.92 48.64 43.78"
+            fill="#FFFFFF"
+          />
+        </g>
       </svg>
     );
   }
